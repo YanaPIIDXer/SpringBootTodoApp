@@ -1,11 +1,15 @@
 package com.yanap.todoapp.requests;
 
+import javax.validation.constraints.NotEmpty;
+
 // TODO管理用のリクエスト
 public class TodoRequest {
     // タイトル
+    @NotEmpty(message = "タイトルを入力してください")
     private String title;
     
     // 本文
+    @NotEmpty(message = "本文を入力してください")
     private String body;
 
     // 優先度
