@@ -6,9 +6,6 @@ import javax.validation.constraints.NotEmpty;
 
 import com.yanap.todoapp.models.User;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 // ユーザ新規登録・ログイン用リクエストデータ
 public class UserRequest implements Serializable {
     // ユーザ名
