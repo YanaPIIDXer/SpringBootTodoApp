@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.yanap.todoapp.models.Todo;
 import com.yanap.todoapp.models.User;
+import com.yanap.todoapp.requests.TodoRequest;
 import com.yanap.todoapp.requests.UserRequest;
 import com.yanap.todoapp.services.TodoService;
 import com.yanap.todoapp.services.UserService;
@@ -36,6 +37,7 @@ public class UserController {
     public String index(Model model, @AuthenticationPrincipal User user) {
         List<Todo> todoList = todoService.collectByUserId(user.getId());
         model.addAttribute("todoList", todoList);
+        model.addAttribute("request", new TodoRequest());
         return "user/index";
     }
 

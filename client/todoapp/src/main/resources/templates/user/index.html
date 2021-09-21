@@ -7,6 +7,20 @@
     <body>
         <h1>ようこそ</h1>
         <span>TODOの数：<span th:text="${todoList.size()}"></span></span>
+        <div th:if="${errors}" th:each="error: ${errors}">
+            <label th:text="${error}"></label>
+        </div>
+        <form th:action="@{/todo/add}" th:object="${request}" method="POST">
+            <label>タイトル：</label><input type="text" th:field="*{title}" /><br />
+            <label>本文：</label>
+            <textarea th:field="*{body}"></textarea><br />
+            <select th:field="*{priority}">
+                <option value=0>低</option>
+                <option value=1>中</option>
+                <option value=2>高</option>
+            </select><br />
+            <input type="submit" value="追加" />
+        </form>
         <form th:action="@{/user/logout}" method="POST">
             <input type="submit" value="ログアウト">
         </form>
