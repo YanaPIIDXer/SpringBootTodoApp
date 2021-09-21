@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 // セキュリティ設定
 @Configuration
@@ -41,6 +42,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // それ以外は認証が必要
         http.authorizeRequests()
             .anyRequest().authenticated();
+
+        // ログアウト
+        http.logout()
+            .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+            .logoutUrl("/user/logout")
+            .logoutSuccessUrl("/");
     }
     
     // 認証設定
