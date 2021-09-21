@@ -32,9 +32,6 @@ public class User implements UserDetails {
     @Column
     private String password;
 
-    // デフォルトコンストラクタ
-    public User() {}
-
     // コンストラクタ
     // IDは自動生成されるので省略
     public User(String name, String password) {
