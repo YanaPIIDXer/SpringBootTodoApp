@@ -10,6 +10,7 @@
             <label th:text="${error}"></label>
         </div>
         <form th:action="@{/todo/edit/update}" th:object="${request}" method="POST">
+            <input type="hidden" name="id" th:value="${id}" />
             <label>タイトル：</label><input type="text" th:field="*{title}" th:value="*{title}" /><br />
             <label>本文：</label>
             <textarea th:field="*{body}"></textarea><br />

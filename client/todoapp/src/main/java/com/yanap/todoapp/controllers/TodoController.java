@@ -62,6 +62,7 @@ public class TodoController {
             model.addAttribute("errors", errors);
             return "redirect: /user";
         }
+        model.addAttribute("id", id);
         model.addAttribute("request", new TodoRequest(todo.getTitle(), todo.getBody(), todo.getPriority()));
         return "todo/edit";
     }
