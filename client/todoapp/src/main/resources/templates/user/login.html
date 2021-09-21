@@ -10,7 +10,7 @@
         </div>
         <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
              class="alert-danger">
-            <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION']}"></span>
+            <span th:text="ユーザ名かパスワードが間違っています"></span>
         </div>
         <h1>ログイン</h1>
         <form th:action="@{/user/auth}" th:object="${request}" th:method="POST">
