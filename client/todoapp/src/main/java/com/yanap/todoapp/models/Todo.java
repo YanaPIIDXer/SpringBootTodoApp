@@ -40,4 +40,9 @@ public class Todo {
         this.body = body;
         this.priority = priority;
     }
+    
+    // 必要になるアクセッサ
+    public String getTitle() { return title; }
+    public String getBody() { return body; }
+    public int getPriority() { return priority; }
 }
