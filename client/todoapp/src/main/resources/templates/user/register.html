@@ -5,7 +5,15 @@
     </head>
 
     <body>
+        <div th:if="${errors}" th:each="error: ${errors}">
+            <label th:text="${error}"></label>
+        </div>
         <h1>登録</h1>
+        <form th:action="@{/user/register}" th:object="${request}" th:method="POST">
+            <label>ユーザ名</label><input type="text" th:field="*{name}" /><br />
+            <label>パスワード</label><input type="password" th:field="*{password}" /><br />
+            <input type="submit" 登録 />
+        </form>
         <a th:href="@{/}">トップページへ</a>
     </body>
 </html>
