@@ -37,6 +37,12 @@
                             <p th:case="2">高</p>
                         </div>
                     </td>
+                    <td>
+                        <a th:href="|/todo/edit/${todo.id}|">編集</a>
+                    </td>
+                    <td>
+                        <a href="">削除</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

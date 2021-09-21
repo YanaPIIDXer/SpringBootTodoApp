@@ -15,6 +15,16 @@ public class TodoRequest {
     // 優先度
     private int priority;
 
+    // デフォルトコンストラクタ
+    public TodoRequest() {}
+
+    // フルコンストラクタ
+    public TodoRequest(String title, String body, int priority) {
+        this.title = title;
+        this.body = body;
+        this.priority = priority;
+    }
+
     // 各種アクセッサ
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }

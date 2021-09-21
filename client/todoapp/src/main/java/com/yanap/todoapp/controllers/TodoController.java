@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yanap.todoapp.models.User;
+import com.yanap.todoapp.models.Todo;
 import com.yanap.todoapp.requests.TodoRequest;
 import com.yanap.todoapp.services.TodoService;
 
@@ -15,7 +16,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 // TODO関係のコントローラ
 @Controller
@@ -46,5 +49,20 @@ public class TodoController {
         }
 
         return "redirect:/user";
+    }
+
+    // 編集ページ
+    @RequestMapping("/todo/edit/{id}")
+    public String edit(@PathVariable("id") long id, Model model) {
+        Todo todo = todoService.getById(id);
+        if (todo == null) {
+            List<String> errors = new ArrayList<String>();
+            errors.add("不正なIDです。");
+            model.addAttribute("request", new TodoRequest());
+            model.addAttribute("errors", errors);
+            return "redirect: /user";
+        }
+        model.addAttribute("request", new TodoRequest(todo.getTitle(), todo.getBody(), todo.getPriority()));
+        return "todo/edit";
     }
 }

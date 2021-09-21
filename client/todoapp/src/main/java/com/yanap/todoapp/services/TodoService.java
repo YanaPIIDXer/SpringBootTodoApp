@@ -21,6 +21,11 @@ public class TodoService {
         return repository.findByUserIdEquals(userId);
     }
 
+    // IDから取得
+    public Todo getById(long id) {
+        return repository.getById(id);
+    }
+
     // リクエストから作成
     public boolean createFromRequest(long userId, TodoRequest request) {
         boolean result = false;
