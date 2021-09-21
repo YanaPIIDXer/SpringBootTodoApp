@@ -16,7 +16,14 @@ public class UserService {
 
     // 保存
     public boolean save(User user) {
-        return (repository.save(user) != null);
+        boolean result = false;
+        try {
+            result = (repository.save(user) != null);            
+        } catch (Exception e) {
+            result = false;
+        }
+
+        return result;
     }
     
 }
