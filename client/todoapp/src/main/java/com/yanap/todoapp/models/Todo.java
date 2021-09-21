@@ -29,4 +29,15 @@ public class Todo {
 
     @Column
     private int priority;
+
+    // デフォルトコンストラクタ
+    public Todo() {}
+
+    // コンストラクタ
+    public Todo(long userId, String title, String body, int priority) {
+        this.userId = userId;
+        this.title = title;
+        this.body = body;
+        this.priority = priority;
+    }
 }
