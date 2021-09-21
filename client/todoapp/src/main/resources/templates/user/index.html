@@ -41,7 +41,9 @@
                         <a th:href="|/todo/edit/${todo.id}|">編集</a>
                     </td>
                     <td>
-                        <a href="">削除</a>
+                        <form th:action="|/todo/delete/${todo.id}|" method="POST">
+                            <input type="submit" value="消去" />
+                        </form>
                     </td>
                 </tr>
             </tbody>

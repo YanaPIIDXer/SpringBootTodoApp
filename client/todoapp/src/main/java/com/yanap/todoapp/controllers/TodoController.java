@@ -90,4 +90,15 @@ public class TodoController {
         }
         return "redirect:/user";
     }
+
+    // 消去処理
+    @PostMapping("/todo/delete/{id}")
+    public String delete(@PathVariable("id") long id, Model model) {
+        if (!todoService.delete(id)) {
+            List<String> errors = new ArrayList<String>();
+            errors.add("何故か保存に失敗しました。");
+            model.addAttribute("errors", errors);
+        }
+        return "redirect:/user";
+    }
 }

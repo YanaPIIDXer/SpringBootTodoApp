@@ -37,6 +37,17 @@ public class TodoService {
         return save(todo);
     }
 
+    // 消去
+    public boolean delete(long id) {
+        boolean result = true;
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            result = false;
+        }
+        return result;
+    }
+
     // 保存処理
     private boolean save(Todo todo) {
         boolean result = false;
