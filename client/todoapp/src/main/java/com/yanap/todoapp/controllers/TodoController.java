@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class TodoController {
     @PostMapping("/todo/add")
     public String add(@Validated @ModelAttribute TodoRequest request, BindingResult result, Model model) {
-        System.out.println("Title:" + request.getTitle());
         return "redirect:/user";
     }
 }
