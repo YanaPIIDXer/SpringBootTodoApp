@@ -47,6 +47,7 @@ public class UserController {
             for (ObjectError error : result.getAllErrors()) {
                 errors.add(error.getDefaultMessage());
             }
+            model.addAttribute("request", request);
             model.addAttribute("errors", errors);
             return "user/register";
         }
@@ -55,6 +56,7 @@ public class UserController {
         if (!userService.save(user)) {
             List<String> errors = new ArrayList<String>();
             errors.add("何故か保存に失敗しました。");
+            model.addAttribute("request", request);
             model.addAttribute("errors", errors);
             return "user/register";
         }
@@ -76,6 +78,7 @@ public class UserController {
             for (ObjectError error : result.getAllErrors()) {
                 errors.add(error.getDefaultMessage());
             }
+            model.addAttribute("request", request);
             model.addAttribute("errors", errors);
             return "user/register";
         }
