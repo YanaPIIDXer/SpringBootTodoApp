@@ -25,8 +25,8 @@
             <thead>
                 <tr><th>タイトル</th><th>本文</th><th>優先度</th></tr>
             </thead>
-            <tbody th:each="todo: ${todoList}">
-                <tr>
+            <tbody>
+                <tr th:each="todo: ${todoList}">
                     <td th:text="${todo.title}"></td>
                     <td th:text="${todo.body}"></td>
                     <td th:text="${todo.title}"></td>
