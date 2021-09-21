@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yanap.todoapp.models.User;
-import com.yanap.todoapp.repositories.UserRepository;
 import com.yanap.todoapp.requests.UserRequest;
 import com.yanap.todoapp.services.UserService;
 
