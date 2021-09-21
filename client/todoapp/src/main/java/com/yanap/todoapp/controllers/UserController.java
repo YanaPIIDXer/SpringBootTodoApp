@@ -3,7 +3,6 @@ package com.yanap.todoapp.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yanap.todoapp.models.User;
 import com.yanap.todoapp.requests.UserRequest;
 import com.yanap.todoapp.services.UserService;
 
@@ -70,7 +69,7 @@ public class UserController {
     }
 
     // ログイン処理
-    @PostMapping("/user/login")
+    @PostMapping("/user/auth")
     public String loginAction(@Validated @ModelAttribute UserRequest request, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<String> errors = new ArrayList<String>();
