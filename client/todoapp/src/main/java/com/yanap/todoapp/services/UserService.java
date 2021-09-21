@@ -5,12 +5,15 @@ import com.yanap.todoapp.repositories.UserRepository;
 import com.yanap.todoapp.requests.UserRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 // ユーザサービス
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     // リポジトリ
     @Autowired
@@ -34,6 +37,14 @@ public class UserService {
         }
 
         return result;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if (username == null || username.equals("")) { throw new UsernameNotFoundException("ユーザ名が空です"); }
+        User user = repository.findByName(username);
+        if (user == null) { throw new UsernameNotFoundException("ユーザ名かパスワードが間違っています"); }
+        return user;
     }
     
 }

@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 // ユーザリポジトリ
 public interface UserRepository extends JpaRepository<User, Integer> {   
+    // 名前から検索
+    public User findByName(String name);
 }
