@@ -6,6 +6,7 @@ import javax.validation.constraints.NotEmpty;
 
 import com.yanap.todoapp.models.User;
 
+// ユーザ新規登録・ログイン用リクエストデータ
 public class UserRequest implements Serializable {
     @NotEmpty(message = "名前を入力してください")
     private String name;
