@@ -3,10 +3,14 @@ package com.yanap.todoapp.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.yanap.todoapp.models.Todo;
+import com.yanap.todoapp.models.User;
 import com.yanap.todoapp.requests.UserRequest;
+import com.yanap.todoapp.services.TodoService;
 import com.yanap.todoapp.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,11 +27,15 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    // TODOサービス
+    @Autowired
+    TodoService todoService;
+
     // ユーザトップページ
     @RequestMapping("/user")
-    public String index() {
-        // @TODO:ユーザ認証
-        //       必要であれば他クラスに移動する
+    public String index(Model model, @AuthenticationPrincipal User user) {
+        List<Todo> todoList = todoService.collectByUserId(user.getId());
+        model.addAttribute("todoList", todoList);
         return "user/index";
     }
 

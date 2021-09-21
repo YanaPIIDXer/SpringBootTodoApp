@@ -16,7 +16,7 @@ public class TodoService {
     private TodoRepository repository;
 
     // ユーザＩＤから列挙
-    public List<Todo> collectByUserId(int userId) {
-        return repository.findByUserId(userId);
+    public List<Todo> collectByUserId(long userId) {
+        return repository.findByUserIdEquals(userId);
     }
 }

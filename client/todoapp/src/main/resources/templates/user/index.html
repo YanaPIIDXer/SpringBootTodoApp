@@ -6,6 +6,7 @@
 
     <body>
         <h1>ようこそ</h1>
+        <span>TODOの数：<span th:text="${todoList.size()}"></span></span>
         <form th:action="@{/user/logout}" method="POST">
             <input type="submit" value="ログアウト">
         </form>

@@ -49,6 +49,8 @@ public class User implements UserDetails {
         return list;
     }
 
+    public long getId() { return id; }
+
     @Override
     public String getPassword() {
         return password;

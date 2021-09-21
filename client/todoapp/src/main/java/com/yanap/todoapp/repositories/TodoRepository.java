@@ -6,7 +6,7 @@ import com.yanap.todoapp.models.Todo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TodoRepository extends JpaRepository<Todo, Integer> {
+public interface TodoRepository extends JpaRepository<Todo, Long> {
     // 特定のユーザのTODOを列挙
-    List<Todo> findByUserId(int userId);
+    List<Todo> findByUserIdEquals(long userId);
 }
