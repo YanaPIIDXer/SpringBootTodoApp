@@ -7,14 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "users")
 public class User implements Serializable {
     @Id
@@ -26,4 +24,11 @@ public class User implements Serializable {
 
     @Column
     private String password;
+
+    // コンストラクタ
+    // IDは自動生成されるので省略
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
 }
