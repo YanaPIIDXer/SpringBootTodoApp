@@ -1,6 +1,5 @@
 package com.yanap.todoapp.models;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
