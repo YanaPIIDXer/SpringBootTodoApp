@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 // TODO関係のコントローラ
 @Controller
@@ -65,5 +66,12 @@ public class TodoController {
         model.addAttribute("id", id);
         model.addAttribute("request", new TodoRequest(todo.getTitle(), todo.getBody(), todo.getPriority()));
         return "todo/edit";
+    }
+
+    // 更新処理
+    @PostMapping("/todo/edit/update")
+    public String update(@RequestParam("id") long id, @Validated @ModelAttribute TodoRequest request, BindingResult result, Model model) {
+        System.out.println("ID:" + id);
+        return "redirect:/user";
     }
 }
