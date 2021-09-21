@@ -28,8 +28,18 @@ public class TodoService {
 
     // リクエストから作成
     public boolean createFromRequest(long userId, TodoRequest request) {
-        boolean result = false;
         Todo todo = new Todo(userId, request.getTitle(), request.getBody(), request.getPriority());
+        return save(todo);
+    }
+
+    // 更新処理
+    public boolean update(Todo todo) {
+        return save(todo);
+    }
+
+    // 保存処理
+    private boolean save(Todo todo) {
+        boolean result = false;
         try {
             result = (repository.save(todo) != null);
         } catch(Exception e) {

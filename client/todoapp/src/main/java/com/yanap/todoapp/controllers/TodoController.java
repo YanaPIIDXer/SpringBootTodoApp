@@ -38,7 +38,7 @@ public class TodoController {
             }
             model.addAttribute("request", request);
             model.addAttribute("errors", errors);
-            return "user/index";
+            return "redirect:/user";
         }
 
         if (!todoService.createFromRequest(user.getId(), request)) {
@@ -46,7 +46,6 @@ public class TodoController {
             errors.add("何故か保存に失敗しました。");
             model.addAttribute("request", request);
             model.addAttribute("errors", errors);
-            return "user/index";
         }
 
         return "redirect:/user";
@@ -71,7 +70,24 @@ public class TodoController {
     // 更新処理
     @PostMapping("/todo/edit/update")
     public String update(@RequestParam("id") long id, @Validated @ModelAttribute TodoRequest request, BindingResult result, Model model) {
-        System.out.println("ID:" + id);
+        Todo todo = todoService.getById(id);
+        if (todo == null) {
+            List<String> errors = new ArrayList<String>();
+            errors.add("不正なIDです。");
+            model.addAttribute("request", new TodoRequest());
+            model.addAttribute("errors", errors);
+            return "redirect: /user";
+        }
+        todo.setTitle(request.getTitle());
+        todo.setBody(request.getBody());
+        todo.setPriority(request.getPriority());
+        if (!todoService.update(todo)) {
+            List<String> errors = new ArrayList<String>();
+            errors.add("何故か保存に失敗しました。");
+            model.addAttribute("request", request);
+            model.addAttribute("errors", errors);
+            return "redirect:/user";
+        }
         return "redirect:/user";
     }
 }
