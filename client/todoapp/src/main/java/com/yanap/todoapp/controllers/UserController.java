@@ -52,8 +52,7 @@ public class UserController {
             return "user/register";
         }
 
-        User user = request.createUser();
-        if (!userService.save(user)) {
+        if (!userService.createFromRequest(request)) {
             List<String> errors = new ArrayList<String>();
             errors.add("何故か保存に失敗しました。");
             model.addAttribute("request", request);
