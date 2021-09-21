@@ -67,20 +67,4 @@ public class UserController {
         model.addAttribute("request", new UserRequest());
         return "user/login";
     }
-
-    // ログイン処理
-    @PostMapping("/user/auth")
-    public String loginAction(@Validated @ModelAttribute UserRequest request, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            List<String> errors = new ArrayList<String>();
-            for (ObjectError error : result.getAllErrors()) {
-                errors.add(error.getDefaultMessage());
-            }
-            model.addAttribute("request", request);
-            model.addAttribute("errors", errors);
-            return "user/register";
-        }
-
-        return "redirect:/user";
-    }
 }
