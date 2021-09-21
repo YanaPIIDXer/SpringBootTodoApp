@@ -20,10 +20,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 // ユーザ関連コントローラ
 @Controller
 public class UserController {
-
     // ユーザサービス
     @Autowired
     UserService userService;
+
+    // ユーザトップページ
+    @RequestMapping("/user")
+    public String index() {
+        // @TODO:ユーザ認証
+        //       必要であれば他クラスに移動する
+        return "user/index";
+    }
 
     // 登録ページ
     @RequestMapping("/user/register")
@@ -52,5 +59,27 @@ public class UserController {
             return "user/register";
         }
         return "redirect:/";
+    }
+
+    // ログインページ
+    @RequestMapping("/user/login")
+    public String login(Model model) {
+        model.addAttribute("request", new UserRequest());
+        return "user/login";
+    }
+
+    // ログイン処理
+    @PostMapping("/user/login")
+    public String loginAction(@Validated @ModelAttribute UserRequest request, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            List<String> errors = new ArrayList<String>();
+            for (ObjectError error : result.getAllErrors()) {
+                errors.add(error.getDefaultMessage());
+            }
+            model.addAttribute("errors", errors);
+            return "user/register";
+        }
+
+        return "redirect:/user";
     }
 }
