@@ -25,9 +25,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // セキュリティ設定
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // トップページと新規登録ページは認証無しでも入れる
+        // 認証無しでもアクセス可能
+        // ※トップページ、登録ページ、リソースファイル
         http.authorizeRequests()
-            .antMatchers("/", "/user/register")
+            .antMatchers("/", "/user/register", "/css/**", "/js/**")
             .permitAll();
         
         // ログインページの指定
