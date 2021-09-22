@@ -3,51 +3,53 @@
     </head>
 
     <body>
-        <h1>ようこそ</h1>
-        <span>TODOの数：<span th:text="${todoList.size()}"></span></span>
-        <div th:if="${errors}" th:each="error: ${errors}">
-            <label th:text="${error}"></label>
+        <div class="text-center">
+            <h1>ようこそ</h1>
+            <span>TODOの数：<span th:text="${todoList.size()}"></span></span>
+            <div th:if="${errors}" th:each="error: ${errors}">
+                <label th:text="${error}"></label>
+            </div>
+            <form th:action="@{/todo/add}" th:object="${request}" method="POST">
+                <label>タイトル：</label><input type="text" th:field="*{title}" /><br />
+                <label>本文：</label>
+                <textarea th:field="*{body}"></textarea><br />
+                <select th:field="*{priority}">
+                    <option value=0>低</option>
+                    <option value=1>中</option>
+                    <option value=2>高</option>
+                </select><br />
+                <input type="submit" value="追加" />
+            </form>
+            <table class="table table-striped">
+                <thead>
+                    <tr><th>タイトル</th><th>本文</th><th>優先度</th></tr>
+                </thead>
+                <tbody>
+                    <tr th:each="todo: ${todoList}">
+                        <td th:text="${todo.title}"></td>
+                        <td th:text="${todo.body}"></td>
+                        <td th:text="${todo.title}"></td>
+                        <td>
+                            <div th:switch="${todo.priority}">
+                                <p th:case="0">低</p>
+                                <p th:case="1">中</p>
+                                <p th:case="2">高</p>
+                            </div>
+                        </td>
+                        <td>
+                            <a th:href="|/todo/edit/${todo.id}|">編集</a>
+                        </td>
+                        <td>
+                            <form th:action="|/todo/delete/${todo.id}|" method="POST">
+                                <input type="submit" value="消去" />
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <form th:action="@{/user/logout}" method="POST">
+                <input type="submit" value="ログアウト">
+            </form>    
         </div>
-        <form th:action="@{/todo/add}" th:object="${request}" method="POST">
-            <label>タイトル：</label><input type="text" th:field="*{title}" /><br />
-            <label>本文：</label>
-            <textarea th:field="*{body}"></textarea><br />
-            <select th:field="*{priority}">
-                <option value=0>低</option>
-                <option value=1>中</option>
-                <option value=2>高</option>
-            </select><br />
-            <input type="submit" value="追加" />
-        </form>
-        <table border="1">
-            <thead>
-                <tr><th>タイトル</th><th>本文</th><th>優先度</th></tr>
-            </thead>
-            <tbody>
-                <tr th:each="todo: ${todoList}">
-                    <td th:text="${todo.title}"></td>
-                    <td th:text="${todo.body}"></td>
-                    <td th:text="${todo.title}"></td>
-                    <td>
-                        <div th:switch="${todo.priority}">
-                            <p th:case="0">低</p>
-                            <p th:case="1">中</p>
-                            <p th:case="2">高</p>
-                        </div>
-                    </td>
-                    <td>
-                        <a th:href="|/todo/edit/${todo.id}|">編集</a>
-                    </td>
-                    <td>
-                        <form th:action="|/todo/delete/${todo.id}|" method="POST">
-                            <input type="submit" value="消去" />
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <form th:action="@{/user/logout}" method="POST">
-            <input type="submit" value="ログアウト">
-        </form>
     </body>
 </html>

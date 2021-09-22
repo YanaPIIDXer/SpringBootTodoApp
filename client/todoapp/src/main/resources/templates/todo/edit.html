@@ -3,23 +3,25 @@
     </head>
 
     <body>
-        <h1>TODO編集</h1>
-        <div th:if="${errors}" th:each="error: ${errors}">
-            <label th:text="${error}"></label>
+        <div class="text-center">
+            <h1>TODO編集</h1>
+            <div th:if="${errors}" th:each="error: ${errors}">
+                <label th:text="${error}"></label>
+            </div>
+            <form th:action="@{/todo/edit/update}" th:object="${request}" method="POST">
+                <input type="hidden" name="id" th:value="${id}" />
+                <label>タイトル：</label><input type="text" th:field="*{title}" th:value="*{title}" /><br />
+                <label>本文：</label>
+                <textarea th:field="*{body}"></textarea><br />
+                <select th:field="*{priority}">
+                    <option value=0>低</option>
+                    <option value=1>中</option>
+                    <option value=2>高</option>
+                </select><br />
+                <input type="submit" value="更新" />
+            </form>
+            <br />
+            <a th:href="@{/user}">戻る</a>    
         </div>
-        <form th:action="@{/todo/edit/update}" th:object="${request}" method="POST">
-            <input type="hidden" name="id" th:value="${id}" />
-            <label>タイトル：</label><input type="text" th:field="*{title}" th:value="*{title}" /><br />
-            <label>本文：</label>
-            <textarea th:field="*{body}"></textarea><br />
-            <select th:field="*{priority}">
-                <option value=0>低</option>
-                <option value=1>中</option>
-                <option value=2>高</option>
-            </select><br />
-            <input type="submit" value="追加" />
-        </form>
-        <br />
-        <a th:href="@{/user}">戻る</a>
     </body>
 </html>
